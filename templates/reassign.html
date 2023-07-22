@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Replacement game{% endblock %}</h1>
+    <h3>{{ deactivated_game.name }} is unavailable and needs to be reassigned.</h3>
+
+    <h2>Affected Players</h2>
+    {% for player in deactivated_game.players %}
+                <p>{{ player.name }}</p>
+    {% endfor %}
+    <h3>{{ replacement_game.name }} is the replacement.</h3>
+
+
+
+    <h2>Please follow these steps EXACTLY</h2>
+    <ol>
+        <li>DEACTIVATE {{ deactivated_game.name }}</li>
+        <li>ASSIGN the group to {{ replacement_game.name }}  Players can begin playing immediatley.</li>
+        <li>AFTER it is repaired REACTIVATE {{ deactivated_game.name }}</li>
+    <ol>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Current Games {% endblock %}</h1>
+    {% for arena in arena_map.values() | sort(attribute='active_game,name',reverse=True) %}
+
+        {% if arena.active_game %}
+            <div class="game-active">
+            <h3>{{ arena.name }} {{ arena.arenaId }}</h3>
+{#            <p>{{ arena.game }}</p>#}
+            {% for player in arena.players %}
+                <p>{{ player.name }}</p>
+            {% endfor %}
+
+             <button onclick="window.location.href='/reassign/{{ arena.tournamentId }}/{{ arena.arenaId }}'">Reassign</button>
+        </div>
+{#        {% else %}#}
+{#        <div class="game-inactive">#}
+{#        <h3>{{ arena.name }}</h3>#}
+{#            </div>#}
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
